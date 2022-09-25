@@ -4,14 +4,15 @@ import { useTranslation } from "next-i18next";
 import Widget from "../widget";
 import Block from "../block";
 
+import { formatProxyUrl } from "utils/api-helpers";
 
 export default function Radarr({ service }) {
   const { t } = useTranslation();
 
   const config = service.widget;
 
-  const { data: moviesData, error: moviesError } = useSWR(formatApiUrl(config, "movie"));
-  const { data: queuedData, error: queuedError } = useSWR(formatApiUrl(config, "queue/status"));
+  const { data: moviesData, error: moviesError } = useSWR(formatProxyUrl(config, "movie"));
+  const { data: queuedData, error: queuedError } = useSWR(formatProxyUrl(config, "queue/status"));
 
   if (moviesError || queuedError) {
     return <Widget error={t("widget.api_error")} />;
