@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import Widget from "../widget";
 import Block from "../block";
 
-import calculateCPUPercent from "utils/stats-helpers";
+import calculateCPUPercent from "widgets/docker/stats-helpers";
 
 export default function Docker({ service }) {
   const { t } = useTranslation();
